@@ -61,7 +61,7 @@ export const POST = async (event) => {
 	}
 
 	try {
-		const hashedPassword = await argon.hash(data.password);
+		const hashedPassword = await argon.hash(atob(data.password));
 		const [newUser] = await db
 			.insert(users)
 			.values({

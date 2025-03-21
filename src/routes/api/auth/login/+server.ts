@@ -61,7 +61,7 @@ export const POST = async (event) => {
 		);
 	}
 
-	const passwordMatch = await argon.verify(user.hashedPassword, data.password);
+	const passwordMatch = await argon.verify(user.hashedPassword, atob(data.password));
 	if (!passwordMatch) {
 		return json(
 			{
