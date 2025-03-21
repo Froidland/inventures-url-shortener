@@ -68,7 +68,14 @@
 			{/each}
 		</ul>
 		<div class="text-center">
-			<a class="text-light-gray-800 hover:text-light-gray-300 underline" href="/">Create a URL</a>
+			<div>
+				<a href="/" class="text-light-gray-800 hover:text-light-gray-300 underline">Create a URL</a>
+			</div>
+			<div>
+				<a href="/api/auth/logout" class="text-light-gray-800 hover:text-light-gray-300 underline"
+					>Logout</a
+				>
+			</div>
 		</div>
 	</div>
 </main>
