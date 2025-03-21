@@ -87,7 +87,7 @@
 				<p class="text-red-500">{errors.get('slug')}</p>
 			{/if}
 		{:else}
-			<Button href="/login">Login to create a custom slug</Button>
+			<Button href="/login">Login to use a custom slug</Button>
 		{/if}
 		{#if url}
 			<button
