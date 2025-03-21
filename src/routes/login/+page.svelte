@@ -46,5 +46,8 @@
 		>
 		<div class="border-dark-gray-800 border-t border-solid"></div>
 		<Button href="/register">Register</Button>
+		<div class="text-center">
+			<a class="text-light-gray-800 hover:text-light-gray-300 underline" href="/">Create a URL</a>
+		</div>
 	</form>
 </main>
