@@ -29,7 +29,7 @@ export const GET = async ({ params, request, getClientAddress }) => {
 	});
 
 	if (!url) {
-		error(404, "Couldn't find the URL");
+		error(404, "This URL doesn't exist");
 	}
 
 	if (url.expiresAt < new Date()) {
