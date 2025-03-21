@@ -80,6 +80,8 @@ On failure, it returns a `404` status code when the URL doesn't exist, or a `410
 
 To deploy this project, you have two options, for either of them, you'll need to have a PostgreSQL database running, and you'll need to set the `DATABASE_URL` environment variable to the connection string of your database.
 
+Before deploying, you'll need to run `pnpm db:migrate` to create the database tables. With the database tables created, you can deploy the project using the instructions below.
+
 ### Docker
 In this repository, you'll find a `Dockerfile` that you can use to build a Docker image for this project. You can build the image using the following command:
 
