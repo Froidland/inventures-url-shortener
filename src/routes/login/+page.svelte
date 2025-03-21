@@ -36,7 +36,7 @@
 		onsubmit={submit}
 		class="bg-dark-gray-400 border-dark-gray-600 flex min-w-[400px] flex-col gap-2 rounded border p-4"
 	>
-		<h1 class="text-center text-2xl text-white">Login</h1>
+		<h1 class="mb-4 text-center text-2xl text-white">Login</h1>
 		<TextInput type="email" name="email" placeholder="Email" />
 		<TextInput type="password" name="password" placeholder="Password" />
 		<Button

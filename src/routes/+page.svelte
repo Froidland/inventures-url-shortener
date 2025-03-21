@@ -76,7 +76,7 @@
 		onsubmit={submit}
 		class="bg-dark-gray-400 border-dark-gray-600 flex min-w-[400px] flex-col gap-2 rounded border p-4"
 	>
-		<h1 class="text-center text-2xl text-white">URL Shortener</h1>
+		<h1 class="mb-4 text-center text-2xl text-white">URL Shortener</h1>
 		<TextInput type="text" name="destination" placeholder="Destination" />
 		{#if errors.has('destination')}
 			<p class="text-red-500">{errors.get('destination')}</p>
