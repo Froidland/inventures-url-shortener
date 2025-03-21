@@ -15,7 +15,7 @@ function generateSlug(length = 8) {
 }
 
 const PostSchema = type({
-	slug: 'string.alpha <= 32 | null',
+	slug: 'string.alphanumeric <= 32 | null',
 	destination: 'string.url'
 });
 type TPostSchema = typeof PostSchema.infer;
