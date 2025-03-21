@@ -11,7 +11,19 @@ export const relations = defineRelations(schema, (r) => ({
 	sessions: {
 		user: r.one.users({
 			from: r.sessions.userId,
-			to: r.users.id
+			to: r.users.id,
+			optional: false
 		})
+	},
+	urls: {
+		user: r.one.users({
+			from: r.urls.userId,
+			to: r.users.id,
+			optional: true
+		}),
+		clicks: r.many.urlClicks({
+			from: r.urls.slug,
+			to: r.urlClicks.urlSlug,
+		}),
 	}
 }));
