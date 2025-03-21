@@ -39,6 +39,7 @@
 		"vite": "^6.0.0"
 	},
 	"dependencies": {
+		"@oslojs/crypto": "^1.0.1",
 		"@types/node": "^22.13.11",
 		"arktype": "^2.1.10",
 		"bentocache": "^1.2.1",
