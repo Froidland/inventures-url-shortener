@@ -2,8 +2,8 @@ import { BentoCache, bentostore } from 'bentocache';
 import { memoryDriver } from 'bentocache/drivers/memory';
 
 export const cache = new BentoCache({
-	default: 'local',
+	default: 'memory',
 	stores: {
-		local: bentostore().useL1Layer(memoryDriver({ maxSize: '10mb' }))
+		memory: bentostore().useL1Layer(memoryDriver({ maxSize: '10mb' }))
 	}
 });
