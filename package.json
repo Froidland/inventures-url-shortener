@@ -24,6 +24,7 @@
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/vite": "^4.0.0",
+		"@types/node": "^22.13.11",
 		"drizzle-kit": "1.0.0-beta.1-a916c3b",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -42,7 +43,6 @@
 	"dependencies": {
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
-		"@types/node": "^22.13.11",
 		"argon2": "^0.41.1",
 		"arktype": "^2.1.10",
 		"bentocache": "^1.2.1",
