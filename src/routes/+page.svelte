@@ -99,7 +99,7 @@
 			<button
 				type="button"
 				onclick={() => copyUrl(url?.slug)}
-				class="bg-dark-gray-600 hover:bg-dark-gray-700 flex h-12 cursor-pointer items-center justify-center rounded transition-colors"
+				class="bg-dark-gray-600 hover:bg-dark-gray-700 flex h-12 cursor-pointer items-center justify-center rounded p-4 transition-colors"
 			>
 				<span class="text-lg text-blue-300">{getSlugUrl(url.slug)}</span>
 			</button>
