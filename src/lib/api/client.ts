@@ -22,19 +22,23 @@ export const api = Object.freeze({
 		};
 	},
 	login: async (email: string, password: string) => {
+		const encodedPassword = btoa(password);
+
 		return await api.client.post('/api/auth/login', {
 			json: {
 				email,
-				password
+				password: encodedPassword
 			}
 		});
 	},
 	register: async (email: string, password: string) => {
+		const encodedPassword = btoa(password);
+
 		return await api.client
 			.post('/api/auth/register', {
 				json: {
 					email,
-					password
+					password: encodedPassword
 				}
 			})
 			.json<TRegisterResponseData>();
