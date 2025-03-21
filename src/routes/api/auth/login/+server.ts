@@ -29,9 +29,14 @@ export const POST = async (event) => {
 	}
 
 	if (data instanceof ArkErrors) {
-		return json({
-			error: data.summary
-		});
+		return json(
+			{
+				error: data.summary
+			},
+			{
+				status: 400
+			}
+		);
 	}
 
 	const user = await db.query.users.findFirst({
@@ -46,16 +51,26 @@ export const POST = async (event) => {
 	});
 
 	if (!user) {
-		return json({
-			error: 'invalid email or password'
-		});
+		return json(
+			{
+				error: 'invalid email or password'
+			},
+			{
+				status: 400
+			}
+		);
 	}
 
 	const passwordMatch = await argon.verify(user.hashedPassword, data.password);
 	if (!passwordMatch) {
-		return json({
-			error: 'invalid email or password'
-		});
+		return json(
+			{
+				error: 'invalid email or password'
+			},
+			{
+				status: 400
+			}
+		);
 	}
 
 	const sessionToken = auth.generateSessionToken();

@@ -30,9 +30,14 @@ export const POST = async (event) => {
 	}
 
 	if (data instanceof ArkErrors) {
-		return json({
-			error: data.summary
-		});
+		return json(
+			{
+				error: data.summary
+			},
+			{
+				status: 400
+			}
+		);
 	}
 
 	const existingUser = await db.query.users.findFirst({
@@ -45,9 +50,14 @@ export const POST = async (event) => {
 	});
 
 	if (existingUser) {
-		return json({
-			error: 'email already in use'
-		});
+		return json(
+			{
+				error: 'email already in use'
+			},
+			{
+				status: 400
+			}
+		);
 	}
 
 	try {
