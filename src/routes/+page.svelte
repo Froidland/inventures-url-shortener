@@ -7,6 +7,7 @@
 	import { page } from '$app/state';
 	import { SvelteMap } from 'svelte/reactivity';
 	import { toast } from 'svelte-french-toast';
+	import { HTTPError } from 'ky';
 
 	type Props = {
 		data: PageData;
@@ -48,6 +49,11 @@
 		try {
 			url = await api.createUrl(destination, slug || undefined);
 		} catch (err) {
+			if (err instanceof HTTPError && err.response.status === 409) {
+				errors.set('slug', 'URL with this slug already exists');
+				return;
+			}
+
 			toast.error('Unable to create URL, please try again');
 		} finally {
 			loading = false;

@@ -3,6 +3,7 @@ import { urls } from '$lib/server/db/schema.js';
 import { generateRandomString, type RandomReader } from '@oslojs/crypto/random';
 import { json } from '@sveltejs/kit';
 import { ArkErrors, type } from 'arktype';
+import pg from 'postgres';
 
 const SLUG_ALPHABET = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 const random: RandomReader = {
@@ -74,7 +75,13 @@ export const POST = async ({ request, locals }) => {
 			status: 201
 		});
 	} catch (err) {
+		// duplicate key value violation
+		if (err instanceof pg.PostgresError && err.code === '23505') {
+			return json({ error: `URL with slug '${slug}' already exists` }, { status: 409 });
+		}
+
 		console.error(err);
+
 		return json(
 			{ error: 'Failed to create the URL' },
 			{
