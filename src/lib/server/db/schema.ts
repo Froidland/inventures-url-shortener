@@ -1,4 +1,5 @@
-import { pgTable } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
+import { index, pgTable } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', (t) => ({
 	id: t.text().primaryKey(),
@@ -50,4 +51,34 @@ export const verifications = pgTable('verifications', (t) => ({
 	expiresAt: t.timestamp().notNull(),
 	createdAt: t.timestamp(),
 	updatedAt: t.timestamp()
+}));
+
+export const urls = pgTable(
+	'urls',
+	(t) => ({
+		slug: t.text().primaryKey(),
+		destination: t.text().notNull(),
+		userId: t.text().references(() => users.id, {
+			onDelete: 'set null'
+		}),
+		createdAt: t.timestamp({ mode: 'date' }).notNull().defaultNow(),
+		expiresAt: t
+			.timestamp({ mode: 'date' })
+			.notNull()
+			.default(sql`now() + interval '3 days'`)
+	}),
+	(self) => ({
+		userIdIndex: index().on(self.userId)
+	})
+);
+
+export const urlClicks = pgTable('url_clicks', (t) => ({
+	id: t.bigint({ mode: 'bigint' }).generatedAlwaysAsIdentity().primaryKey(),
+	urlSlug: t.text().references(() => urls.slug, {
+		onDelete: 'restrict'
+	}),
+	ip: t.text(),
+	country: t.text(),
+	city: t.text(),
+	createdAt: t.timestamp({ mode: 'date' }).notNull().defaultNow()
 }));
