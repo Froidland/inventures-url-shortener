@@ -85,5 +85,12 @@
 			disabled={loading}
 			class="border-green-700 bg-green-900 hover:border-green-500 hover:bg-green-700">Create</Button
 		>
+		{#if data.user}
+			<div class="text-center">
+				<a class="text-light-gray-800 hover:text-light-gray-300 underline" href="/dashboard"
+					>Go to my URLs</a
+				>
+			</div>
+		{/if}
 	</form>
 </main>
