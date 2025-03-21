@@ -1,11 +1,9 @@
-import type { Session, User } from 'better-auth';
-
 declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			session: Session | undefined;
-			user: User | undefined;
+			user: import('$lib/server/auth').SessionValidationResult['user'];
+			session: import('$lib/server/auth').SessionValidationResult['session'];
 		}
 		// interface PageData {}
 		// interface PageState {}
