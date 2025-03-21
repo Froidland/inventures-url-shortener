@@ -68,6 +68,10 @@ It returns a JSON body with the following properties:
 - `destination`: The destination URL
 - `expiresAt`: The expiration date of the URL
 
+On failure, it returns a JSON body with the following properties:
+
+- `error`: A string describing the error, if invalid data is passed in the request. this property will contain a summary of the invalid fileds and their expected value.
+
 ### `GET /r/:slug`
 
 Although this endpoint is not exposed in the API path, it's sole purpose is to redirect to a URL. It takes no JSON body.
