@@ -1,6 +1,13 @@
 # Inventures URL Shortener
 In this repo you'll find a simple URL shortener built with SvelteKit and Node.js, made for the Inventures Remote FullStack Technical Challenge. You can find the hosted version of the project at [https://inventures.pancho.moe/](https://inventures.pancho.moe/).
 
+## Requirements
+
+- Node.js `22.x` or higher 
+- PostgreSQL `15.x` or higher
+- pnpm `10.x` or higher
+- Docker (optional)
+
 ## Data model
 The data model used for this project consists of 4 tables:
 
