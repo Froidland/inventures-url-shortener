@@ -1,10 +1,34 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { api } from '$lib/api/client';
 	import Button from '$lib/components/ui/Button.svelte';
 	import TextInput from '$lib/components/ui/TextInput.svelte';
+	import { HTTPError } from 'ky';
 
-	function submit(event: SubmitEvent) {
+	async function submit(event: SubmitEvent) {
 		event.preventDefault();
+
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+
+		const email = formData.get('email') as string;
+		const password = formData.get('password') as string;
+
+		loading = true;
+		try {
+			await api.login(email, password);
+			goto('/');
+		} catch (err) {
+			if (err instanceof HTTPError) {
+				const message = await err.response.json<{ error: string }>();
+				alert(message.error);
+			}
+		} finally {
+			loading = false;
+		}
 	}
+
+	let loading = $state(false);
 </script>
 
 <main class="flex h-screen items-center justify-center">
