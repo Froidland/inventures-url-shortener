@@ -67,9 +67,7 @@ export const urls = pgTable(
 			.notNull()
 			.default(sql`now() + interval '3 days'`)
 	}),
-	(self) => ({
-		userIdIndex: index().on(self.userId)
-	})
+	(t) => [index('url_to_user_id_index').on(t.userId)]
 );
 
 export const urlClicks = pgTable('url_clicks', (t) => ({
