@@ -12,24 +12,41 @@
 		data: PageData;
 	};
 
+	const slugRegex = /^[a-zA-Z0-9]+$/;
+
 	async function submit(event: SubmitEvent) {
 		event.preventDefault();
+		errors.clear();
 
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
 
 		const destination = formData.get('destination') as string;
+		const slug = formData.get('slug') as string | null;
 
 		try {
 			new URL(destination);
 		} catch {
 			errors.set('destination', 'Invalid URL');
+		}
+
+		if (slug) {
+			if (slug.length > 32) {
+				errors.set('slug', 'Slug must be 32 characters or less');
+			}
+
+			if (slug.length > 0 && !slugRegex.test(slug)) {
+				errors.set('slug', 'Slug can only contain alphanumeric characters');
+			}
+		}
+
+		if (errors.size > 0) {
 			return;
 		}
 
 		loading = true;
 		try {
-			url = await api.createUrl(destination, (formData.get('slug') as string) || undefined);
+			url = await api.createUrl(destination, slug || undefined);
 		} catch (err) {
 			toast.error('Unable to create URL, please try again');
 		} finally {
@@ -68,6 +85,9 @@
 		{/if}
 		{#if data.user}
 			<TextInput type="text" name="slug" placeholder="Slug" />
+			{#if errors.has('slug')}
+				<p class="text-red-500">{errors.get('slug')}</p>
+			{/if}
 		{:else}
 			<Button href="/login">Login to create a custom slug</Button>
 		{/if}
